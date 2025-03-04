@@ -5,6 +5,7 @@ import Navbar from "app/components/Navbar";
 import CategoryFilters from "app/components/CategoryFilter";
 import { motion } from "framer-motion";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useRef } from "react";
 
 const Home = () => {
   const [numListings, setNumListings] = useState(12);
@@ -20,19 +21,57 @@ const Home = () => {
         <Navbar />
       </div>
 
-      {/* Conteneur principal avec padding-top réduit */}
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-        {" "}
-        {/* Changé de pt-16 à pt-12 */}
-        <section className="py-16">
-          {" "}
-          {/* Supprimé mt-17 */}
+      {/* Conteneur principal avec padding-top ajusté */}
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-35">
+        {/* Nouvelle div pour "Trouver votre logement de rêve" */}
+        <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-8 rounded-xl mb-8 text-center shadow-lg border border-blue-100 mt-16">
+          <div className="max-w-2xl mx-auto">
+            {/* Icône ou illustration */}
+            <div className="flex justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-12 w-12 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                />
+              </svg>
+            </div>
+
+            {/* Titre */}
+            <h2 className="text-3xl font-bold text-blue-900 mb-4">
+              Trouvez votre logement de rêve
+            </h2>
+
+            {/* Description */}
+            <p className="text-gray-600 text-lg mb-6">
+              Explorez notre sélection exclusive de propriétés et découvrez
+              celle qui correspond parfaitement à vos attentes.
+            </p>
+
+            {/* Bouton d'action */}
+            <Link
+              to="/listings"
+              className="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md"
+            >
+              Explorer les annonces
+            </Link>
+          </div>
+        </div>
+
+        {/* Section principale */}
+        <section className="py-16 pt-4">
           {/* CategoryFilters avec un espacement réduit */}
-          <div className="mt-12">
-            {" "}
-            {/* Réduit la marge supérieure */}
+          <div className="mt-0">
             <CategoryFilters />
           </div>
+
           {/* Grille des annonces */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Array.from({ length: numListings }, (_, index) => (
@@ -56,7 +95,7 @@ const Home = () => {
                     >
                       Voir Détails
                     </Link>
-                    <button className="text-gray-600 hover:text-red-500">
+                    <button className="text-gray-600 cursor-pointer hover:text-red-500">
                       <FaHeart size={18} />
                     </button>
                   </div>
@@ -64,6 +103,7 @@ const Home = () => {
               </div>
             ))}
           </div>
+
           {/* Bouton "Afficher plus" */}
           <div className="text-center mt-12">
             <p className="text-lg text-gray-800 font-medium">
@@ -77,6 +117,7 @@ const Home = () => {
             </button>
           </div>
         </section>
+
         {/* Section Call to Action */}
         <section className="bg-gradient-to-r rounded-lg from-blue-700 to-blue-500 text-white py-20 text-center border-">
           <motion.div
@@ -93,7 +134,7 @@ const Home = () => {
               futurs locataires ou acheteurs dès aujourd’hui.
             </p>
             <Link
-              to="/host"
+              to="/Logement" // Lien vers la page Logement
               className="mt-8 inline-block bg-white text-blue-950 font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 hover:shadow-xl transition duration-300 text-lg"
             >
               Mettre mon logement
